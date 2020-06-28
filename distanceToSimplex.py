@@ -51,25 +51,27 @@ def distanceToSimplex(point, S):
         if sum(alpha) <= 1 and posflag == 1:
             # projection inside simplex
             distance = np.linalg.norm(pprime-b)
-            projection = np.transpose(pprime+S[0, :])
+            projection = np.transpose(pprime+S[0])
 
         elif posflag == 0:
             Sprime = []
-            Sprime[0] = S[0, :]
-            count = 1
+
+            #Sprime[0] = S[0]
+            Sprime.append(S[0])
+
             for ii in range(0, np.shape(alpha)[0]):
                 if alpha[ii] > 0:
-                    Sprime[count] = S[ii+1, :]
-                    count = count+1
-            distance, projection = distanceToSimplex(point, Sprime)
+                    Sprime.append(S[ii+1])
+                    
+            distance, projection = distanceToSimplex(point, np.array(Sprime))
         else:
-            distance, projection = distanceToSimplex(point, S[1:, :])
+            distance, projection = distanceToSimplex(point, np.array(S[1:]))
 
     return distance, projection
 
 
 # SANITY TEST
-f = open('test_set1.csv', 'r')
+f = open('test_set2.csv', 'r')
 lines = f.read().split('\n')
 f.close()
 
