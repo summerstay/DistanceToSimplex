@@ -43,7 +43,6 @@ def distanceToSimplex(point, S):
         P = np.dot(A, np.dot(np.linalg.inv(np.dot(A.T, A)), A.T))
         pprime = np.dot(P, b)
 
-        ############ TODO: CURRENT ISSUE ############
         posflag = 1
         for ii in range(0, np.shape(alpha)[0]):
             if alpha[ii] < 0:
