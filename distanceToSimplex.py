@@ -7,8 +7,8 @@ def distanceToSimplex(point, S):
     An implementation of An Algorithm to Compute the Distance from a Point to a Simplex
     by Oleg Golubitsky, Vadim Mazalov and Stephen M. Watt
 
-    Matlab Implementation: Douglas Summers Stay
-    Python Implementation: Snehesh Shrestha
+    Matlab Implementation: Douglas Summers Stay (https://github.com/summerstay)
+    Python Implementation: Snehesh Shrestha (https://github.com/sneheshs)
     '''
 
     n = np.shape(S)[0]
