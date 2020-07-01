@@ -1,6 +1,6 @@
 import numpy as np
 from sympy import Matrix
-
+from frref import frref
 
 def distanceToSimplex(point, S):
     '''
@@ -29,12 +29,14 @@ def distanceToSimplex(point, S):
         bottom = np.dot(A.T, b)
         #bottom = bottom+.00000001*np.random.rand(np.shape(bottom)[0])
 
-        #alpha = np.divide(bottom, top)
+        # divide
         alpha = np.linalg.solve(top, bottom)
 
-        # _, pivcol = Matrix.rref(A)  # frref(A)
-        __A = Matrix(A)
-        _, pivcol = __A.rref()  # frref(A)
+        # # SLOW RREF
+        # __A = Matrix(A)
+        # _, pivcol = __A.rref()  # frref(A)
+        # FAST RREF
+        _, pivcol = frref(A)
         A = A[:, pivcol]
 
         # P = A*inv(A'*A)*A'
